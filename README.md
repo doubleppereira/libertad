@@ -102,6 +102,8 @@ class SomeComponent extends React.Component {
     }
 
 }
+
+export default SomeComponent;
 ```
 
 You might be wondering how is this going to free our application from
