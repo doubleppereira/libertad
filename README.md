@@ -16,7 +16,8 @@ However, acording to ["React in patterns"](https://github.com/krasimir/react-in-
 
 > Most of the solutions for dependency injection in React components are based on context. I think that it’s good to know what happens under the hood. As the time of this writing one of the most popular ways for building React apps involves Redux. The famous connect function and the Provider there use the context.
 
-Libertad provides a context-free dependency injection for redux applications. 
+Libertad provides a context-free dependency injection for redux applications. Libertad offers a context-free alternative to the `connect` function and the `Provider` component from [react-redux](https://github.com/reactjs/react-redux).
+
 
 ## Installation
 todo
