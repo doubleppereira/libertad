@@ -55,37 +55,22 @@ let kernel = new Kernel();
 kernel.bind<ActionsTypeIdentifier>("ActionsTypeIdentifier").toConstantValue(actions);
 kernel.bind<SomeOtherDependencyIdentifier>("SomeOtherDependencyIdentifier").to(SomeOtherDependency);
 
-let { 
-  injectProps,
-  injectActions,
-  pInject, pInjectNamed,
-  pInjectTagged,
-  pMultiInject
-} = getDecorators(kernel, store);
-
-export {
-  injectProps,
-  injectActions,
-  pInject,
-  pInjectNamed,
-  pInjectTagged,
-  pMultiInject
-};
+export default getDecorators(kernel, store);
 ```
 
 At the end of this process we have the following decorators ready to be consumed:
 
 - The `@injectProps` decorator can be used to inject props mapped from the Redux state.
 - The `@injectActions` decorator can be used to inject actions creators after binding them to dispatch.
-- The `@pInject` decorator can be used to inject any other kind of dependency.
-- The `@pInjectNamed` decorator can be used to inject any other kind of dependency with "name" metadata.
-- The `@pInjectTagged` decorator can be used to inject any other kind of dependency with custom metadata.
-- The `@pMultiInject` decorator can be used to multi-inject any other kind of dependency (with multiple bindings).
+- The `@lazyInject` decorator can be used to inject any other kind of dependency.
+- The `@lazyInjectNamed` decorator can be used to inject any other kind of dependency with "name" metadata.
+- The `@lazyInjectTagged` decorator can be used to inject any other kind of dependency with custom metadata.
+- The `@lazyMultiInject` decorator can be used to multi-inject any other kind of dependency (with multiple bindings).
 - 
 You can apply these decorators to properties in your components:
 
 ```ts
-import { injectProps, injectActions, pInject } from "./app/decorators";
+import { injectProps, injectActions, lazyInject } from "./app/decorators";
 import React from "react";
 
 function mapStateToProps(state) {
