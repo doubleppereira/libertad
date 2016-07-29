@@ -26,5 +26,11 @@
   "bugs": {
     "url": "https://github.com/redux-bootstrap/libertad/issues"
   },
-  "homepage": "https://github.com/redux-bootstrap/libertad#readme"
+  "homepage": "https://github.com/redux-bootstrap/libertad#readme",
+  "devDependencies": {
+    "@types/inversify": "^2.0.27",
+    "@types/redux": "^3.3.26",
+    "inversify": "^2.0.0-rc.1",
+    "reflect-metadata": "^0.1.3"
+  }
 }

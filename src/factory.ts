@@ -1,12 +1,12 @@
 import { bindActionCreators } from "redux";
 import proxyGetter from "./proxy";
 
-function getDecorators(kernel, store) {
+function getDecorators(kernel: inversify.interfaces.Kernel, store: Redux.Store) {
 
     kernel.bind(store).toSelf();
 
     // Decorator used to inject props mapped from the state into a class property
-    let injectProps = (mapStateToProps) => {
+    let injectProps = (mapStateToProps: (state: any) => any) => {
         return function(proto: any, key: string): void {
             let state = store.getState();
             let props = mapStateToProps(state);
@@ -16,7 +16,7 @@ function getDecorators(kernel, store) {
     };
 
     // Decorator used to bind action creators and inject them into a class property
-    let injectActions = (actionCreatorsIdentifier) => {
+    let injectActions = (actionCreatorsIdentifier: inversify.interfaces.serviceIdentifier) => {
         return function(proto: any, key: string): void {
             let dispatch = store.dispatch;
             let actionCreators = kernel.get(actionCreatorsIdentifier);

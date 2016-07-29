@@ -25,7 +25,24 @@ Libertad provides a context-free dependency injection for redux applications. Li
 ## How to use it?
 
 The libertad API provides you with some decorators but beore you can use these
-decorators you are required to create them using a factory named `getDecorators`:
+decorators you are required to create them using a factory named `getDecorators`.
+
+The `getDecorators` factory needs an instance of the Redux `Store` and 
+an instance of InversifyJS `Kernel` to be provided.
+
+After creating the InversifyJS `Kernel` we configured it. 
+We created a dictionary that maps a type identifier with a Class or Value. 
+The dictionary entries are known as “type bindings”.
+
+In this case, we use a binding to:
+
+- Map the identifier `"ActionsTypeIdentifier"` to the `actions` value.
+- Map the identifier `"SomeOtherDependencyIdentifier"` to the `SomeOtherDependency` Class.
+
+Since we are using InversifyJS, we also generated another
+decorator provided by the factory `makePropertyInjectDecorator`.
+
+Please refer to the InversifyJS [docs](https://github.com/inversify/InversifyJS) if you need additional information.
 
 ```ts
 import "reflect-metadata";
@@ -48,28 +65,13 @@ let pInject = makePropertyInjectDecorator(kernel);
 export { injectProps, injectActions, pInject };
 ```
 
-The `getDecorators` factory needs an instance of the Redux `Store` and 
-an instance of InversifyJS `Kernel` to be provided.
-
-After creating the InversifyJS `Kernel` we configured it. 
-We created a dictionary that maps a type identifier with a Class or Value. 
-The dictionary entries are known as “type bindings”.
-
-In this case, we use a binding to:
-
-- Map the identifier `"ActionsTypeIdentifier"` to the `actions` value.
-- Map the identifier `"SomeOtherDependencyIdentifier"` to the `SomeOtherDependency` Class.
-
-Since we are using InversifyJS, we also generated another
-decorator provided by the factory `makePropertyInjectDecorator`.
-
-Please refer to the InversifyJS [docs](https://github.com/inversify/InversifyJS) if you need additional information.
-
 At the end of this process we have three decorators ready to be consumed:
 
 - The `@injectProps` decorator can be used to inject props mapped from the Redux state.
 - The `@injectActions` decorator can be used to inject actions creators after binding them to dispatch.
 - The `@pInject` decorator can be used to inject any other kind of dependency.
+
+You can apply these decorators to properties in your components:
 
 ```ts
 import { injectProps, injectActions, pInject } from "./app/decorators";
@@ -112,15 +114,16 @@ anymore.
 
 > The famous connect function and the Provider there use the context.
 
-Once you remove them your application becomes free of the usage context.
+Once you remove them `@connect` and `<Provider>` from your application it 
+becomes free of the usage context.
 
 ## About the library name
 The main motivation behind this project was to implement a 
 context-free dependency injection solution for redux applications.
 
 For this reason I though that a name related with the word "freedom"
-would be cool. Since I'm Spanish I ended up naming it **"Libertad"**, which
-is the spanish for "freedom".
+would be cool. Since I'm Spanish I ended up naming it **"Libertad"**,
+which is the Spanish word for "freedom".
 
 ## License
 
