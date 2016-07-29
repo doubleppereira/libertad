@@ -24,7 +24,7 @@ Libertad provides a context-free dependency injection for redux applications. Li
 
 ## How to use it?
 
-The libertad API provides you with some decorators but beore you can use these
+The libertad API provides you with some decorators but before you can use these
 decorators you are required to create them using a factory named `getDecorators`.
 
 The `getDecorators` factory needs an instance of the Redux `Store` and 
