@@ -62,7 +62,7 @@ class SomeComponent extends React.Component {
     private _actions: any;
     
     @pInject("SomeOtherDependencyIdentifier")
-    private _actions: any;
+    private _other: any;
 
     public render() {
         return (<a onClick={this._actions.onLick}>{this.props.title}</a>);
