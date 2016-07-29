@@ -50,7 +50,6 @@ import * as actions from "../../actions/actions";
 import SomeOtherDependency from "../../x/y";
 
 let store = new Store();
-
 let kernel = new Kernel();
 
 kernel.bind<ActionsTypeIdentifier>("ActionsTypeIdentifier").toConstantValue(actions);
