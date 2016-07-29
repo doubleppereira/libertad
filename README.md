@@ -98,7 +98,7 @@ class SomeComponent extends React.Component {
     private other: any;
 
     public render() {
-        return (<a onClick={this._actions.onLick}>{this.props.title}</a>);
+        return (<a onClick={this.actions.onLick}>{this.props.title}</a>);
     }
 
 }
