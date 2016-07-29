@@ -39,30 +39,39 @@ In this case, we use a binding to:
 - Map the identifier `"ActionsTypeIdentifier"` to the `actions` value.
 - Map the identifier `"SomeOtherDependencyIdentifier"` to the `SomeOtherDependency` Class.
 
-Since we are using InversifyJS, we also generated another
-decorator provided by the factory `makePropertyInjectDecorator`.
-
 Please refer to the InversifyJS [docs](https://github.com/inversify/InversifyJS) if you need additional information.
 
 ```ts
 import "reflect-metadata";
 import getDecorators from "libertad";
 import Store from "redux";
-import { Kernel, makePropertyInjectDecorator } from "inversify";
+import { Kernel } from "inversify";
 import * as actions from "../../actions/actions";
 import SomeOtherDependency from "../../x/y";
 
 let store = new Store();
 
 let kernel = new Kernel();
-let pInject = makePropertyInjectDecorator(kernel);
+
 kernel.bind<ActionsTypeIdentifier>("ActionsTypeIdentifier").toConstantValue(actions);
 kernel.bind<SomeOtherDependencyIdentifier>("SomeOtherDependencyIdentifier").to(SomeOtherDependency);
 
-let { injectProps, injectActions } = getDecorators(kernel, store);
-let pInject = makePropertyInjectDecorator(kernel);
+let { 
+  injectProps,
+  injectActions,
+  pInject, pInjectNamed,
+  pInjectTagged,
+  pMultiInject
+} = getDecorators(kernel, store);
 
-export { injectProps, injectActions, pInject };
+export {
+  injectProps,
+  injectActions,
+  pInject,
+  pInjectNamed,
+  pInjectTagged,
+  pMultiInject
+};
 ```
 
 At the end of this process we have three decorators ready to be consumed:
@@ -70,7 +79,10 @@ At the end of this process we have three decorators ready to be consumed:
 - The `@injectProps` decorator can be used to inject props mapped from the Redux state.
 - The `@injectActions` decorator can be used to inject actions creators after binding them to dispatch.
 - The `@pInject` decorator can be used to inject any other kind of dependency.
-
+- The `@pInjectNamed` decorator can be used to inject any other kind of dependency with "name" metadata.
+- The `@pInjectTagged` decorator can be used to inject any other kind of dependency with custom metadata.
+- The `@pMultiInject` decorator can be used to multi-inject any other kind of dependency (with multiple bindings).
+- 
 You can apply these decorators to properties in your components:
 
 ```ts
