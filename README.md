@@ -74,7 +74,7 @@ export {
 };
 ```
 
-At the end of this process we have three decorators ready to be consumed:
+At the end of this process we have the following decorators ready to be consumed:
 
 - The `@injectProps` decorator can be used to inject props mapped from the Redux state.
 - The `@injectActions` decorator can be used to inject actions creators after binding them to dispatch.
