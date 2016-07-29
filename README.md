@@ -1,5 +1,5 @@
 # Libertad
-Context-free dependency injection for redux applications
+Context-free dependency injection for redux applications. Libertad is powered by [InversifyJS](https://github.com/inversify/InversifyJS).
 
 ## Motivation
 Based on the React docs, we should try to avoid using context:
