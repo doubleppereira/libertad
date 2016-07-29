@@ -66,7 +66,7 @@ At the end of this process we have the following decorators ready to be consumed
 - The `@lazyInjectNamed` decorator can be used to inject any other kind of dependency with "name" metadata.
 - The `@lazyInjectTagged` decorator can be used to inject any other kind of dependency with custom metadata.
 - The `@lazyMultiInject` decorator can be used to multi-inject any other kind of dependency (with multiple bindings).
-- 
+
 You can apply these decorators to properties in your components:
 
 ```ts
@@ -90,7 +90,7 @@ class SomeComponent extends React.Component {
     private actions: any;
     
     // Inject any other kind of dependency
-    @pInject("SomeOtherDependencyIdentifier")
+    @lazyInject("SomeOtherDependencyIdentifier")
     private other: any;
 
     public render() {
