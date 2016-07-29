@@ -16,7 +16,7 @@ However, acording to ["React in patterns"](https://github.com/krasimir/react-in-
 
 > Most of the solutions for dependency injection in React components are based on context. I think that it’s good to know what happens under the hood. As the time of this writing one of the most popular ways for building React apps involves Redux. The famous connect function and the Provider there use the context.
 
-Libertad provides a context-free dependency injection for redux applications.
+Libertad provides a context-free dependency injection for redux applications. 
 
 ## Installation
 todo
@@ -28,20 +28,23 @@ import provide from "inversify-redux";
 import Store from "redux";
 import { Kernel, makePropertyInjectDecorator } from "inversify";
 import * as actions from "../../actions/actions";
+import SomeOtherDependency from "../../x/y";
 
 let store = new Store();
 
 let kernel - new Kernel();
 let pInject = makePropertyInjectDecorator(kernel);
-kernel.bind("ActionsTypeIdentifier").to(actions);
+kernel.bind<ActionsTypeIdentifier>("ActionsTypeIdentifier").toConstantValue(actions);
+kernel.bind<SomeOtherDependencyIdentifier>("SomeOtherDependencyIdentifier").to(SomeOtherDependency);
 
 let { injectProps, injectActions } = provide(kernel, store);
+let pInject = makePropertyInjectDecorator(kernel);
 
-export { injectProps, injectActions };
+export { injectProps, injectActions, pInject };
 ```
 
 ```ts
-import { injectProps, injectActions } from "./app/decorators";
+import { injectProps, injectActions, pInject } from "./app/decorators";
 import React from "react";
 
 function mapStateToProps(state) {
@@ -56,6 +59,9 @@ class SomeComponent extends React.Component {
     private _props: any;
 
     @injectActions("ActionsTypeIdentifier")
+    private _actions: any;
+    
+    @pInject("SomeOtherDependencyIdentifier")
     private _actions: any;
 
     public render() {
