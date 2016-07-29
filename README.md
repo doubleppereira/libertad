@@ -87,15 +87,15 @@ class SomeComponent extends React.Component {
 
     // Inject props mapped from the Redux state
     @injectProps(mapStateToProps)
-    private _props: any;
+    private props: any;
 
     // Inject actions creators after binding them to dispatch
     @injectActions("ActionsTypeIdentifier")
-    private _actions: any;
+    private actions: any;
     
     // Inject any other kind of dependency
     @pInject("SomeOtherDependencyIdentifier")
-    private _other: any;
+    private other: any;
 
     public render() {
         return (<a onClick={this._actions.onLick}>{this.props.title}</a>);
