@@ -1,0 +1,30 @@
+{
+  "name": "libertad",
+  "version": "1.0.0",
+  "description": "Context-free dependency injection for redux applications",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redux-bootstrap/libertad.git"
+  },
+  "keywords": [
+    "inversifyjs",
+    "dependency",
+    "injection",
+    "container",
+    "inversion",
+    "control",
+    "react",
+    "context",
+    "redux"
+  ],
+  "author": "Remo H. Jansen <remo.jansen@wolksoftware.com> (http://www.remojansen.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/redux-bootstrap/libertad/issues"
+  },
+  "homepage": "https://github.com/redux-bootstrap/libertad#readme"
+}
