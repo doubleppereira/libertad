@@ -65,7 +65,7 @@ class SomeComponent extends React.Component {
 }
 ```
 
-### License
+## License
 
 License under the MIT License (MIT)
 
