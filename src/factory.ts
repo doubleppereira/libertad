@@ -1,9 +1,20 @@
 import { bindActionCreators } from "redux";
 import proxyGetter from "./proxy";
+import {
+  makePropertyInjectDecorator,
+  makePropertyInjectNamedDecorator,
+  makePropertyInjectTaggedDecorator,
+  makePropertyMultiInjectDecorator
+} from "inversify-inject-decorators";
 
 function getDecorators(kernel: inversify.interfaces.Kernel, store: Redux.Store) {
 
     kernel.bind(store).toSelf();
+
+    let pInject = makePropertyInjectDecorator(kernel);
+    let pInjectNamed = makePropertyInjectNamedDecorator(kernel);
+    let pInjectTagged = makePropertyInjectTaggedDecorator(kernel);
+    let pMultiInject = makePropertyMultiInjectDecorator(kernel);
 
     // Decorator used to inject props mapped from the state into a class property
     let injectProps = (mapStateToProps: (state: any) => any) => {
@@ -26,7 +37,13 @@ function getDecorators(kernel: inversify.interfaces.Kernel, store: Redux.Store) 
         }
     };
 
-    return { injectProps, injectActions };
+    return {
+        injectProps,
+        injectActions,
+        pInject, pInjectNamed,
+        pInjectTagged,
+        pMultiInject
+    };
 
 }
 
